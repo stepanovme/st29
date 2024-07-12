@@ -49,6 +49,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="tile" onClick="window.location.href = 'services.php'">
                 <a>Услуги</a>
             </div>
+            <div class="tile" onClick="window.location.href = 'feedback.php'">
+                <a>Обратная связь</a>
+            </div>
         </div>
         <div class="page-content">
             <h1>Настройки</h1>

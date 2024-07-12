@@ -38,6 +38,9 @@ if ($result->num_rows > 0) {
             <div class="tile active">
                 <a>Услуги</a>
             </div>
+            <div class="tile" onClick="window.location.href = 'feedback.php'">
+                <a>Обратная связь</a>
+            </div>
         </div>
         <div class="page-content">
             <div class="title">

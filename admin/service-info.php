@@ -61,6 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['serviceName'], $_POST[
             <div class="tile active" onClick="window.location.href = 'services.php'">
                 <a>Услуги</a>
             </div>
+            <div class="tile" onClick="window.location.href = 'feedback.php'">
+                <a>Обратная связь</a>
+            </div>
         </div>
         <div class="page-content">
             <h1>Информация об услуге <?php echo htmlspecialchars($service['name']); ?></h1>

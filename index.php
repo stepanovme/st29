@@ -29,12 +29,17 @@ if($result -> num_rows > 0){
     <title><?php echo $companyName;?></title>
 </head>
 <body>
-    
+        
     <section class="promo">
+        <video autoplay loop muted playsinline id="promoVideo">
+            <source src="../assets/videos/promo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
         <header>
             <div class="content">
                 <div class="logo">
-                    <?php echo $companyName;?>
+                    <?php echo $companyName; ?>
                 </div>
                 <div class="nav">
                     <a id="callCompany">О КОМПАНИИ</a>
@@ -43,7 +48,7 @@ if($result -> num_rows > 0){
                     <a id="callContacts">КОНТАКТЫ</a>
                 </div>
                 <div class="buttons">
-                    <a href="tel:<?php echo $phoneFormated;?>"><?php echo $phone;?></a>
+                    <a href="tel:<?php echo $phoneFormated; ?>"><?php echo $phone; ?></a>
                     <button type="button" id="callMe">ЗАКАЗАТЬ ЗВОНОК</button>
                 </div>
             </div>
@@ -55,7 +60,7 @@ if($result -> num_rows > 0){
                 <p>Специалезируемся на фасадных<br> и кровельных работах</p>
                 <div class="buttons">
                     <button type="button" class="call-us" id="callMeBack">Связаться с нами!</button>
-                    <button type="button" class="view-works">Посмотреть работы&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right " style="color: #ffffff;"></i></button>
+                    <button type="button" class="view-works">Посмотреть работы&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
                 </div>
             </div>
         </div>

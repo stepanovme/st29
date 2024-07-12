@@ -5,23 +5,69 @@ html{
     scroll-behavior: smooth;
 }
 
-section.promo{
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}   
+
+section.promo {
+    position: relative;
     height: 100vh;
     width: 100vw;
-    background-blend-mode: multiply;
-    background-image: url(../assets/images/promo.png);
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(5, 65, 163, 0.55);
+    overflow: hidden;
 }
 
-section.promo>header{
+section.promo video#promoVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+}
+
+section.promo .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 65, 163, 0.4);
+    z-index: 1;
+}
+
+section.promo>header,
+section.promo>.text {
+    position: relative;
+    z-index: 2;
+}
+
+section.promo>header {
     display: flex;
     justify-content: center;
+    animation: slideDown .8s ease-out forwards;
 }
 
-section.promo>header>.content{
+section.promo>header>.content {
     padding: 25px 0;
     width: 1280px;
     display: flex;
@@ -29,18 +75,18 @@ section.promo>header>.content{
     align-items: center;
 }
 
-section.promo>header>.content>.logo{
+section.promo>header>.content>.logo {
     font-size: 20px;
     font-weight: 600;
     color: white;
 }
 
-section.promo>header>.content>.nav{
+section.promo>header>.content>.nav {
     display: flex;
     align-items: center;
 }
 
-section.promo>header>.content>.nav>a{
+section.promo>header>.content>.nav>a {
     padding: 10px;
     text-decoration: none;
     color: white;
@@ -51,18 +97,18 @@ section.promo>header>.content>.nav>a{
     transition: .3s all;
 }
 
-section.promo>header>.content>.nav>a:hover{
+section.promo>header>.content>.nav>a:hover {
     background-color: #2270F1;
     color: white;
 }
 
-section.promo>header>.content>.buttons{
+section.promo>header>.content>.buttons {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-section.promo>header>.content>.buttons>a{
+section.promo>header>.content>.buttons>a {
     text-decoration: none;
     color: white;
     font-weight: 500;
@@ -70,7 +116,7 @@ section.promo>header>.content>.buttons>a{
     outline: none;
 }
 
-section.promo>header>.content>.buttons>button{
+section.promo>header>.content>.buttons>button {
     padding: 5px 15px;
     background-color: #2270F1;
     border: 0;
@@ -81,38 +127,39 @@ section.promo>header>.content>.buttons>button{
     cursor: pointer;
 }
 
-section.promo>.text{
+section.promo>.text {
     display: flex;
     justify-content: center;
+    animation: fadeIn .9s ease-in forwards;
 }
 
-section.promo>.text>.content{
+section.promo>.text>.content {
     width: 1280px;
     height: calc(100vh - 86px);
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
 }
 
-section.promo>.text>.content>h1{
+section.promo>.text>.content>h1 {
     font-size: 52px;
     font-weight: 700;
     color: white;
 }
 
-section.promo>.text>.content>p{
+section.promo>.text>.content>p {
     font-size: 28px;
     font-weight: 300;
     color: white;
 }
 
-section.promo>.text>.content>.buttons{
+section.promo>.text>.content>.buttons {
     display: flex;
     margin-top: 22px;
     gap: 37px;
 }
 
-section.promo>.text>.content>.buttons>button.call-us{
+section.promo>.text>.content>.buttons>button.call-us {
     padding: 7px 32px;
     background-color: #2270F1;
     color: white;
@@ -125,11 +172,11 @@ section.promo>.text>.content>.buttons>button.call-us{
     transition: .3s all;
 }
 
-section.promo>.text>.content>.buttons>button.call-us:hover{
+section.promo>.text>.content>.buttons>button.call-us:hover {
     background-color: transparent;
 }
 
-section.promo>.text>.content>.buttons>button.view-works{
+section.promo>.text>.content>.buttons>button.view-works {
     display: flex;
     align-items: center;
     padding: 7px 10px;
@@ -143,7 +190,7 @@ section.promo>.text>.content>.buttons>button.view-works{
     transition: .3s all;
 }
 
-section.promo>.text>.content>.buttons>button.view-works:hover{
+section.promo>.text>.content>.buttons>button.view-works:hover {
     background-color: #2270F1;
 }
 
