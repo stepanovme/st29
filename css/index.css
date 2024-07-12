@@ -25,6 +25,28 @@ html{
     }
 }   
 
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 section.promo {
     position: relative;
     height: 100vh;
@@ -210,6 +232,11 @@ section.service>.content>p.title{
     font-size: 32px;
     color: #0F244F;
     font-weight: 700;
+    opacity: 0;
+}
+
+section.service>.content>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 section.service>.content>.cards{
@@ -222,6 +249,7 @@ section.service>.content>.cards{
 }
 
 section.service>.content>.cards>.card{
+    opacity: 0;
     min-height: 300px;
     padding: 10px;
     border-radius: 6px;
@@ -231,6 +259,10 @@ section.service>.content>.cards>.card{
     box-shadow: 0px 0px 47px -20px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: .3s all;
+}
+
+section.service>.content>.cards>.card.visible{
+    animation: slideUp .8s ease-out forwards;
 }
 
 section.service>.content>.cards>.card>p.num{
@@ -280,16 +312,26 @@ section.our-works>.content{
 }
 
 section.our-works>.content>p.title{
+    opacity: 0;
     font-size: 32px;
     font-weight: 700;
     color: white;
 }
 
+section.our-works>.content>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
+}
+
 section.our-works>.content>.reasons{
+    opacity: 0;
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
     gap: 25px;
+}
+
+section.our-works>.content>.reasons.visible{
+    animation: slideLeft .6s ease-in forwards;
 }
 
 section.our-works>.content>.reasons>.reason{
@@ -311,6 +353,7 @@ section.our-works>.content>.reasons>.reason>p.descr{
 }
 
 section.our-works>.content>.works{
+    overflow: hidden;
     margin-top: 35px;
     display: grid;
     grid-template-columns: repeat(4, 300px);
@@ -318,6 +361,7 @@ section.our-works>.content>.works{
 }
 
 section.our-works>.content>.works>.work{
+    opacity: 1;
     padding: 20px;
     height: 300px;
     background-blend-mode: multiply;
@@ -330,13 +374,16 @@ section.our-works>.content>.works>.work{
     transition: .3s all;
 }
 
+section.our-works>.content>.works>.work.visible{
+    animation: slideUp .8s ease-out forwards;
+}
+
 section.our-works>.content>.works>.work>p.title{
     font-weight: 600;
     font-size: 28px;
     color: white;
     opacity: 0;
     transition: .3s all;
-
 }
 
 section.our-works>.content>.works>.work>p.descr{

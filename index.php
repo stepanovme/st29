@@ -77,13 +77,10 @@ if($result -> num_rows > 0){
             $result = $conn->query($sql);
             $numService = 0;
             
-            $services = [];
             if ($result->num_rows > 0) {
                 echo '<div class="cards">';
                 while ($row = $result->fetch_assoc()) {
                     $numService++;
-
-                    
                     echo ' 
                         <div class="card">
                             <p class="num">0'.$numService.'</p>
@@ -91,14 +88,10 @@ if($result -> num_rows > 0){
                             <p class="descr">'.$row['description'].'</p>
                         </div>
                     ';
-                    
                 }
                 echo '</div>';
             }
             ?>
-
-                
-            
         </div>
     </section>
 
@@ -283,47 +276,6 @@ if($result -> num_rows > 0){
         </div>
     </footer>
 
-    <script type="text/javascript">
-        document.getElementById('callMe').addEventListener('click', function() {
-            document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('callMeBack').addEventListener('click', function() {
-            document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('callCompany').addEventListener('click', function() {
-            document.getElementById('company').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('callServices').addEventListener('click', function() {
-            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('callWorks').addEventListener('click', function() {
-            document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('callContacts').addEventListener('click', function() {
-            document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
-        });
-
-
-        document.getElementById('footerCompany').addEventListener('click', function() {
-            document.getElementById('company').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('footerServices').addEventListener('click', function() {
-            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('footerWorks').addEventListener('click', function() {
-            document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('footerContacts').addEventListener('click', function() {
-            document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
+    <script src="js/index.js"></script>
 </body>
 </html>
