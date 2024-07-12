@@ -1,3 +1,23 @@
+<?php
+require_once('db.php');
+
+$sql = "SELECT * FROM setting";
+$result = $conn -> query($sql);
+
+if($result -> num_rows > 0){
+    while($row = $result -> fetch_assoc()){
+        $companyName = $row['nameCompany'];
+        $phone = $row['phone'];
+        $email = $row['email'];
+        $address = $row['address'];
+
+        $phoneFormated = str_replace([' ', '(', ')', '-'], '', $phone);
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,7 +26,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Строительные технологии</title>
+    <title><?php echo $companyName;?></title>
 </head>
 <body>
     
@@ -14,7 +34,7 @@
         <header>
             <div class="content">
                 <div class="logo">
-                    СТРОИТЕЛЬНЫЕ ТЕХНОЛОГИИ
+                    <?php echo $companyName;?>
                 </div>
                 <div class="nav">
                     <a id="callCompany">О КОМПАНИИ</a>
@@ -23,7 +43,7 @@
                     <a id="callContacts">КОНТАКТЫ</a>
                 </div>
                 <div class="buttons">
-                    <a href="tel:+79600083281">+7 (960) 008-32-81</a>
+                    <a href="tel:<?php echo $phoneFormated;?>"><?php echo $phone;?></a>
                     <button type="button" id="callMe">ЗАКАЗАТЬ ЗВОНОК</button>
                 </div>
             </div>
@@ -47,48 +67,33 @@
                 Наши услуги
             </p>
 
-            <div class="cards">
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-                <div class="card">
-                    <p class="num">01</p>
-                    <p class="title">Фасадные работы</p>
-                    <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
-                </div>
-            </div>
+            <?php 
+            $sql = "SELECT * FROM service ORDER BY sort_order";
+            $result = $conn->query($sql);
+            $numService = 0;
+            
+            $services = [];
+            if ($result->num_rows > 0) {
+                echo '<div class="cards">';
+                while ($row = $result->fetch_assoc()) {
+                    $numService++;
+
+                    
+                    echo ' 
+                        <div class="card">
+                            <p class="num">0'.$numService.'</p>
+                            <p class="title">'.$row['name'].'</p>
+                            <p class="descr">'.$row['description'].'</p>
+                        </div>
+                    ';
+                    
+                }
+                echo '</div>';
+            }
+            ?>
+
+                
+            
         </div>
     </section>
 
@@ -245,16 +250,16 @@
             </div>
             <div class="info">
                 <p class="title">Контакты</p>
-                <p class="phone">Телефон: <a href="tel:+79600083281">+7 (960) 008-32-81</a></p>
-                <p class="email">Эл. почта: stepanovskyev@mail.ru</p>
-                <p class="address">Адрес: г. Архангельск, Ул. Павла Усова, 45 Офис 18 (2-й этаж)</p>
+                <p class="phone">Телефон: <a href="tel:<?php echo $phoneFormated;?>">+7 (960) 008-32-81</a></p>
+                <p class="email">Эл. почта: <?php echo $email;?></p>
+                <p class="address">Адрес: <?php echo $address;?></p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="content">
-            <p>© 2020 Строительные технологии</p>
+            <p>© 2020 <?php echo $companyName;?></p>
             <div class="other">
                 <div class="nav">
                     <p class="title">НАВИГАЦИЯ</p>
@@ -265,9 +270,9 @@
                 </div>
                 <div class="contacts">
                     <p class="title">КОНТАКТЫ</p>
-                    <p>Номер телефона: +7 (960) 008-32-81</p>
-                    <p>Эл. почта: stepanovskyev@mail.ru</p>
-                    <p>Адрес: г. Архангельск, Ул. Павла<br>Усова, 45, офис 18 (2-й этаж)</p>
+                    <p>Номер телефона: <?php echo $phone;?></p>
+                    <p>Эл. почта: <?php echo $email;?></p>
+                    <p>Адрес: <?php echo $address;?></p>
                 </div>
             </div>
         </div>

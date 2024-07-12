@@ -1,0 +1,100 @@
+@import url('style.css');
+@import url('varriables.css');
+
+.content{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    min-height: 100vh;
+}
+
+.content>.nav{
+    padding: 20px 0;
+    padding-left: 40px;
+    background-color: #2270F1;
+    width: 100%;
+}
+
+.content>.nav>.tile{
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s all;
+}
+
+.content>.nav>.tile.active{
+    background-color: #F6F9FE;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.content>.nav>.tile:hover{
+    background-color: #F6F9FE;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.content>.nav>.tile:hover a{
+    color: #2270F1;
+}
+
+.content>.nav>.tile.active>a{
+    color: #2270F1;
+}
+
+.content>.nav>p.title{
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.content>.nav>.tile>a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.content>.page-content{
+    padding: 20px;
+    background-color: #F6F9FE;
+}
+
+.content>.page-content>h1{
+    color: #0F244F;
+}
+
+.content>.page-content>form{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 200px 400px;
+    align-items: center;
+    gap: 10px;
+}
+
+.content>.page-content>form>label{
+    color: #0F244F;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.content>.page-content>form>input{
+    padding: 6px 16px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #0F244F;
+    background-color: white;
+    border: 2px solid #67A0FD;
+    outline: none;
+}
+
+.content>.page-content>form>button{
+    margin-top: 20px;
+    color: white;
+    padding: 7px 46px;
+    border: 0;
+    background-color: #5595FF;
+    outline: none;
+    cursor: pointer;
+}
