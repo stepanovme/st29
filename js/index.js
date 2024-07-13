@@ -170,5 +170,33 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(navsFooter);
         navsFooter.style.animationDelay = `${index * 0.1}s`;
     });
+});
 
+$(document).ready(function() {
+    $('#phone').mask('+7 (000) 000-00-00', {placeholder: "+7 (___) ___-__-__"});
+
+    $('#feedbackForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var email = $('#email').val();
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailPattern.test(email)) {
+            alert('Пожалуйста, введите действительный адрес электронной почты.');
+            return;
+        }
+
+        $.ajax({
+            url: 'process_feedback.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#feedbackForm')[0].reset();
+                $('#notification').fadeIn().delay(3000).fadeOut();
+            },
+            error: function() {
+                alert('Произошла ошибка при отправке сообщения.');
+            }
+        });
+    });
 });

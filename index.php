@@ -26,6 +26,8 @@ if($result -> num_rows > 0){
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <title><?php echo $companyName;?></title>
 </head>
 <body>
@@ -225,16 +227,16 @@ if($result -> num_rows > 0){
     </section>
 
     <section class="feedback" id="feedback">
-        <form action="">
+        <form id="feedbackForm" action="process_feedback.php" method="post">
             <p class="title">Обратная связь</p>
             <p class="descr">Используйте форму для отправки нам сообщения.<br>
             Мы ответим вам в ближайшее время.</p>
-            <input type="text" name="name" id="name" placeholder="Ваше имя">
+            <input type="text" name="name" id="name" placeholder="Ваше имя" required>
             <div class="line">
-                <input type="email" name="email" id="email" placeholder="Эл. почта">
-                <input type="tel" name="phone" id="phone" placeholder="Телефон">
+                <input type="email" name="email" id="email" placeholder="Эл. почта" required>
+                <input type="tel" name="phone" id="phone" placeholder="Телефон" required>
             </div>
-            <textarea name="comment" id="comment" placeholder="Сообщение"></textarea>
+            <textarea name="comment" id="comment" placeholder="Сообщение" required></textarea>
             <button type="submit">Отправить</button>
         </form>
     </section>
@@ -273,6 +275,8 @@ if($result -> num_rows > 0){
             </div>
         </div>
     </footer>
+
+    <div id="notification" style="display: none;">Сообщение отправлено!</div>
 
     <script src="js/index.js"></script>
 </body>

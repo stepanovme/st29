@@ -5,13 +5,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$sql = "SELECT * FROM service ORDER BY sort_order";
+$sql = "SELECT * FROM feedback";
 $result = $conn->query($sql);
 
-$services = [];
+$numFeedback = 1;
+
+$feedback = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
+        $feedback[] = $row;
     }
 }
 ?>
@@ -23,9 +25,11 @@ if ($result->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="../css/feedback.css">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Обратная связь</title>
 </head>
 <body>
@@ -38,7 +42,7 @@ if ($result->num_rows > 0) {
             <div class="tile" onClick="window.location.href = 'services.php'">
                 <a>Услуги</a>
             </div>
-            <div class="tile active" >
+            <div class="tile active">
                 <a>Обратная связь</a>
             </div>
         </div>
@@ -47,87 +51,104 @@ if ($result->num_rows > 0) {
                 <h1>Обратная связь</h1>
                 <button id="addButton">Добавить</button>
             </div>
+
+            <div class="search">
+                <input type="text" name="searchInput" id="searchInput" placeholder="Введите имя, почту или номер телефона">
+                <input type="date" name="dateInput" id="dateInput">
+                <select name="statusInput" id="statusInput">
+                    <option value="" disabled>Статус</option>
+                    <option value="all">Все</option>
+                    <option value="1" selected>Новая</option>
+                    <option value="2">Отработано</option>
+                </select>
+            </div>
+
             <table id="servicesTable">
                 <thead>
                     <tr>
                         <th>Номер</th>
-                        <th>Название</th>
+                        <th>Имя</th>
+                        <th>Почта</th>
+                        <th>Телефон</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
                     </tr>
                 </thead>
                 <tbody id="servicesList">
-                    <?php foreach ($services as $service): ?>
-                        <tr class="service-row" data-id="<?php echo $service['serviceId']; ?>" data-sort-order="<?php echo $service['sort_order']; ?>">
-                            <td><?php echo $service['sort_order']; ?></td>
-                            <td><?php echo $service['name']; ?></td>
+                    <?php foreach ($feedback as $item): ?>
+                        <tr class="service-row" data-id="<?php echo $item['feedbackId']; ?>">
+                            <td><?php echo $numFeedback++; ?></td>
+                            <td><?php echo $item['name']; ?></td>
+                            <td><?php echo $item['email']; ?></td>
+                            <td><?php echo $item['phone']; ?></td>
+                            <td><?php echo date("d.m.Y", strtotime($item['createdDate'])); ?></td>
+                            <td>
+                                <?php if ($item['feedbackStatusId'] == 1) { ?>
+                                    <div class="status new">Новая</div>
+                                <?php } else { ?>
+                                    <div class="status processed">Обработано</div>
+                                <?php } ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const servicesList = document.getElementById('servicesList');
+        $(document).ready(function() {
+            $('#searchInput, #dateInput, #statusInput').on('input change', function() {
+                var searchValue = $('#searchInput').val().toLowerCase();
+                var dateValue = $('#dateInput').val();
+                var statusValue = $('#statusInput').val();
 
-            new Sortable(servicesList, {
-                animation: 150,
-                onEnd: function (evt) {
-                    let order = [];
-                    servicesList.querySelectorAll('tr').forEach((row, index) => {
-                        row.querySelector('td').innerText = index + 1; // Update the displayed order
-                        order.push({
-                            id: row.getAttribute('data-id'),
-                            sort_order: index + 1
-                        });
-                    });
+                console.log("Search Value: ", searchValue);
+                console.log("Date Value: ", dateValue);
+                console.log("Status Value: ", statusValue);
 
-                    fetch('service_update.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ order: order })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            console.log('Order updated successfully');
-                        } else {
-                            console.error('Failed to update order: ', data.message);
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-                }
-            });
+                $('#servicesList tr').each(function() {
+                    var name = $(this).find('td').eq(1).text().toLowerCase();
+                    var email = $(this).find('td').eq(2).text().toLowerCase();
+                    var phone = $(this).find('td').eq(3).text().replace(/\D/g, ''); // Удалить все нецифровые символы
+                    var date = $(this).find('td').eq(4).text();
+                    var status = $(this).find('.status').hasClass('new') ? '1' : '2';
 
-            // Add click event listeners to each service row
-            servicesList.querySelectorAll('.service-row').forEach(row => {
-                row.addEventListener('click', function() {
-                    const serviceId = row.getAttribute('data-id');
-                    window.location.href = `service-info.php?serviceId=${serviceId}`;
+                    console.log("Row Data - Name: ", name, " Email: ", email, " Phone: ", phone, " Date: ", date, " Status: ", status);
+
+                    // Нормализуем номер телефона для сравнения
+                    var normalizedPhone = phone.replace(/^7/, '').replace(/^8/, '');
+                    var normalizedSearchPhone = searchValue.replace(/\D/g, '').replace(/^7/, '').replace(/^8/, '');
+
+                    var matchesSearch = (
+                        name.includes(searchValue) || 
+                        email.includes(searchValue) || 
+                        (normalizedPhone.includes(normalizedSearchPhone) && normalizedSearchPhone !== "")
+                    );
+
+                    // Преобразуем дату из таблицы в формат yyyy-mm-dd для сравнения
+                    var formattedDate = date.split('.').reverse().join('-');
+                    var matchesDate = (dateValue === "" || formattedDate === dateValue);
+
+                    var matchesStatus = (statusValue === "all" || statusValue === "" || status === statusValue);
+
+                    console.log("Matches Search: ", matchesSearch, " Matches Date: ", matchesDate, " Matches Status: ", matchesStatus);
+
+                    if (matchesSearch && matchesDate && matchesStatus) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
                 });
             });
 
-            document.getElementById('addButton').addEventListener('click', function() {
-                fetch('service_add.php', {
-                    method: 'POST'
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.href = `service-info.php?serviceId=${data.serviceId}`;
-                    } else {
-                        console.error('Failed to add service: ', data.message);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            });
+            // Запускаем событие input при загрузке страницы для фильтрации по статусу "all"
+            $('#statusInput').trigger('change');
         });
     </script>
+
+
+
+
 </body>
 </html>
