@@ -49,7 +49,6 @@ if ($result->num_rows > 0) {
         <div class="page-content">
             <div class="title">
                 <h1>Обратная связь</h1>
-                <button id="addButton">Добавить</button>
             </div>
 
             <div class="search">
@@ -63,7 +62,7 @@ if ($result->num_rows > 0) {
                 </select>
             </div>
 
-            <table id="servicesTable">
+            <table id="feedbackTable">
                 <thead>
                     <tr>
                         <th>Номер</th>
@@ -74,9 +73,9 @@ if ($result->num_rows > 0) {
                         <th>Статус</th>
                     </tr>
                 </thead>
-                <tbody id="servicesList">
+                <tbody id="feedbackList">
                     <?php foreach ($feedback as $item): ?>
-                        <tr class="service-row" data-id="<?php echo $item['feedbackId']; ?>">
+                        <tr class="feedback-row" data-id="<?php echo $item['feedbackId']; ?>">
                             <td><?php echo $numFeedback++; ?></td>
                             <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['email']; ?></td>
@@ -99,40 +98,30 @@ if ($result->num_rows > 0) {
     <script>
         $(document).ready(function() {
             $('#searchInput, #dateInput, #statusInput').on('input change', function() {
-                var searchValue = $('#searchInput').val().toLowerCase();
-                var dateValue = $('#dateInput').val();
-                var statusValue = $('#statusInput').val();
-
-                console.log("Search Value: ", searchValue);
-                console.log("Date Value: ", dateValue);
-                console.log("Status Value: ", statusValue);
+                let searchValue = $('#searchInput').val().toLowerCase();
+                let dateValue = $('#dateInput').val();
+                let statusValue = $('#statusInput').val();
 
                 $('#servicesList tr').each(function() {
-                    var name = $(this).find('td').eq(1).text().toLowerCase();
-                    var email = $(this).find('td').eq(2).text().toLowerCase();
-                    var phone = $(this).find('td').eq(3).text().replace(/\D/g, ''); // Удалить все нецифровые символы
-                    var date = $(this).find('td').eq(4).text();
-                    var status = $(this).find('.status').hasClass('new') ? '1' : '2';
+                    let name = $(this).find('td').eq(1).text().toLowerCase();
+                    let email = $(this).find('td').eq(2).text().toLowerCase();
+                    let phone = $(this).find('td').eq(3).text().replace(/\D/g, '');
+                    let date = $(this).find('td').eq(4).text();
+                    let status = $(this).find('.status').hasClass('new') ? '1' : '2';
 
-                    console.log("Row Data - Name: ", name, " Email: ", email, " Phone: ", phone, " Date: ", date, " Status: ", status);
+                    let normalizedPhone = phone.replace(/^7/, '').replace(/^8/, '');
+                    let normalizedSearchPhone = searchValue.replace(/\D/g, '').replace(/^7/, '').replace(/^8/, '');
 
-                    // Нормализуем номер телефона для сравнения
-                    var normalizedPhone = phone.replace(/^7/, '').replace(/^8/, '');
-                    var normalizedSearchPhone = searchValue.replace(/\D/g, '').replace(/^7/, '').replace(/^8/, '');
-
-                    var matchesSearch = (
+                    let matchesSearch = (
                         name.includes(searchValue) || 
                         email.includes(searchValue) || 
                         (normalizedPhone.includes(normalizedSearchPhone) && normalizedSearchPhone !== "")
                     );
 
-                    // Преобразуем дату из таблицы в формат yyyy-mm-dd для сравнения
-                    var formattedDate = date.split('.').reverse().join('-');
-                    var matchesDate = (dateValue === "" || formattedDate === dateValue);
+                    let formattedDate = date.split('.').reverse().join('-');
+                    let matchesDate = (dateValue === "" || formattedDate === dateValue);
 
-                    var matchesStatus = (statusValue === "all" || statusValue === "" || status === statusValue);
-
-                    console.log("Matches Search: ", matchesSearch, " Matches Date: ", matchesDate, " Matches Status: ", matchesStatus);
+                    let matchesStatus = (statusValue === "all" || statusValue === "" || status === statusValue);
 
                     if (matchesSearch && matchesDate && matchesStatus) {
                         $(this).show();
@@ -142,9 +131,17 @@ if ($result->num_rows > 0) {
                 });
             });
 
-            // Запускаем событие input при загрузке страницы для фильтрации по статусу "all"
             $('#statusInput').trigger('change');
         });
+
+        const feedbackList = document.getElementById("feedbackList");
+
+        feedbackList.querySelectorAll('.feedback-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const feedbackId = row.getAttribute('data-id');
+                    window.location.href = `feedback-info.php?feedbackId=${feedbackId}`;
+                });
+            });
     </script>
 
 

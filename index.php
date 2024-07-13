@@ -13,7 +13,6 @@ if($result -> num_rows > 0){
 
         $phoneFormated = str_replace([' ', '(', ')', '-'], '', $phone);
     }
-
 }
 
 ?>

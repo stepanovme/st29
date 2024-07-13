@@ -1,0 +1,19 @@
+.content>.page-content>.title{
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content>.page-content>.title>.status.new{
+    background-color: rgb(85, 149, 255);
+    color: white;
+    padding: 6px 32px;
+    border-radius: 6px;
+}
+
+.content>.page-content>.title>.status.processed{
+    background-color: green;
+    color: white;
+    padding: 6px 32px;
+    border-radius: 6px;
+}

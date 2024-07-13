@@ -74,7 +74,7 @@ if ($result->num_rows > 0) {
                 onEnd: function (evt) {
                     let order = [];
                     servicesList.querySelectorAll('tr').forEach((row, index) => {
-                        row.querySelector('td').innerText = index + 1; // Update the displayed order
+                        row.querySelector('td').innerText = index + 1;
                         order.push({
                             id: row.getAttribute('data-id'),
                             sort_order: index + 1
@@ -105,7 +105,6 @@ if ($result->num_rows > 0) {
                 }
             });
 
-            // Add click event listeners to each service row
             servicesList.querySelectorAll('.service-row').forEach(row => {
                 row.addEventListener('click', function() {
                     const serviceId = row.getAttribute('data-id');
