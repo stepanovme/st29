@@ -159,7 +159,7 @@ if($result -> num_rows > 0){
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
             </div>
-            <button type="button">Посмотреть работы <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+            <button type="button" class="viewBtn">Посмотреть работы <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
         </div>
     </section>
 
@@ -178,9 +178,7 @@ if($result -> num_rows > 0){
 
     <section class="reviews">
         <div class="content">
-            <div class="title">
-                <p class="title">Наши отзывы</p>
-            </div>
+            <p class="title">Наши отзывы</p>
             <div class="reviews-content">
                 <div class="review">
                     <p class="title">Николай М.</p>
@@ -244,7 +242,7 @@ if($result -> num_rows > 0){
     <section class="contacts" id="contacts">
         <div class="content">
             <div class="maps" id="map">
-            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1a0d6043f33f3689581218168a1eb2b48d2579a9ca5611549d62b4ed4bbb61cc&amp;width=600&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1a0d6043f33f3689581218168a1eb2b48d2579a9ca5611549d62b4ed4bbb61cc&amp;width=600&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
             </div>
             <div class="info">
                 <p class="title">Контакты</p>

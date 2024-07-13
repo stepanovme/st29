@@ -36,9 +36,31 @@ html{
     }
 }
 
+@keyframes slideDownVer {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @keyframes slideLeft {
     from {
         transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(20px);
         opacity: 0;
     }
     to {
@@ -361,7 +383,7 @@ section.our-works>.content>.works{
 }
 
 section.our-works>.content>.works>.work{
-    opacity: 1;
+    opacity: 0;
     padding: 20px;
     height: 300px;
     background-blend-mode: multiply;
@@ -406,8 +428,6 @@ section.our-works>.content>.works>.work>p.details{
     color: white;
     opacity: 0;
     transition: .3s all;
-
-
 }
 
 section.our-works>.content>.works>.work:hover{
@@ -419,7 +439,8 @@ section.our-works>.content>.works>.work:hover p.details{
     opacity: 1;
 }
 
-section.our-works>.content>button{
+section.our-works>.content>.viewBtn{
+    opacity: 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -435,6 +456,10 @@ section.our-works>.content>button{
     cursor: pointer;
 }
 
+section.our-works>.content>.viewBtn.visible{
+    animation: slideDownVer .6s ease-in forwards;
+}
+
 section.about-company{
     padding: 50px 0;
     display: flex;
@@ -448,17 +473,35 @@ section.about-company>.content{
 }
 
 section.about-company>.content>.info>p.title{
+    opacity: 0;
     color: #0F244F;
     font-size: 32px;
     font-weight: 700;
 }
 
+section.about-company>.content>.info>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
+}
+
 section.about-company>.content>.info>p.descr{
+    opacity: 0;
     width: 620px;
     margin-top: 35px;
     font-size: 24px;
     font-weight: 500;
     color: #0F244F;
+}
+
+section.about-company>.content>.info>p.descr.visible{
+    animation: slideLeft .6s ease-in forwards;
+}
+
+section.about-company>.content>img{
+    opacity: 0;
+}
+
+section.about-company>.content>img.visible{
+    animation: slideRight .6s ease-in forwards;
 }
 
 section.reviews{
@@ -473,16 +516,16 @@ section.reviews>.content{
     width: 1280px;
 }
 
-section.reviews>.content>.title{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
-section.reviews>.content>.title>p.title{
+section.reviews>.content>.title{
+    opacity: 0;
     font-size: 32px;
     font-weight: 700;
     color: #0F244F;
+}
+
+section.reviews>.content>.title.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 section.reviews>.content>.title>button{
@@ -501,11 +544,17 @@ section.reviews>.content>.reviews-content{
     display: grid;
     grid-template-columns: repeat(2, 620px);
     gap: 40px;
+    overflow: hidden;
 }
 
 section.reviews>.content>.reviews-content>.review{
+    opacity: 0;
     padding: 20px;
     background-color: white;
+}
+
+section.reviews>.content>.reviews-content>.review.visible{
+    animation: slideUp .6s ease-in forwards;
 }
 
 section.reviews>.content>.reviews-content>.review>p.title{
@@ -535,11 +584,16 @@ section.reviews>.content>.buttons{
 }
 
 section.reviews>.content>.buttons>button{
+    opacity: 0;
     padding: 10px;
     background-color: #2270F1;
     border: 0;
     outline: none;
     cursor: pointer;
+}
+
+section.reviews>.content>.buttons>button.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 section.reviews>.content>.buttons>button>i{
@@ -558,23 +612,35 @@ section.send-review>form{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: hidden;
 }
 
 section.send-review>form>p.title{
+    opacity: 0;
     color: #0F244F;
     font-weight: 700;
     font-size: 32px;
     text-align: center;
 }
 
+section.send-review>form>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
+}
+
 section.send-review>form>p.descr{
+    opacity: 0;
     font-size: 20px;
     font-weight: 300;
     color: #0F244F;
     text-align: center;
 }
 
+section.send-review>form>p.descr.visible{
+    animation: slideRight .6s ease-in forwards;
+}
+
 section.send-review>form>input, section.send-review>form>textarea{
+    opacity: 0;
     padding: 13px 16px;
     font-size: 20px;
     font-weight: 400;
@@ -584,11 +650,16 @@ section.send-review>form>input, section.send-review>form>textarea{
     outline: none;
 }
 
+section.send-review>form>input.visible, section.send-review>form>textarea.visible{
+    animation: slideRight .6s ease-in forwards;
+}
+
 section.send-review>form>textarea{
     min-height: 320px;
 }
 
 section.send-review>form>button{
+    opacity: 0;
     display: block;
     margin: 0 auto;
     color: white;
@@ -597,6 +668,10 @@ section.send-review>form>button{
     background-color: #5595FF;
     outline: none;
     cursor: pointer;
+}
+
+section.send-review>form>button.visible{
+    animation: slideUp .6s ease-in forwards;
 }
 
 section.feedback{
@@ -612,9 +687,14 @@ section.feedback{
 }
 
 section.feedback>form{
+    opacity: 0;
     padding: 30px 20px;
     background-color: #2270F1;
     width: 665px;
+}
+
+section.feedback>form.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 section.feedback>form>p{
@@ -691,12 +771,27 @@ section.contacts>.content>.info>p{
     font-weight: 500;
 }
 
+section.contacts>.content>.info>p.phone, section.contacts>.content>.info>p.email,
+section.contacts>.content>.info>p.address{
+    opacity: 0;
+}
+
+section.contacts>.content>.info>p.phone.visible, section.contacts>.content>.info>p.email.visible,
+section.contacts>.content>.info>p.address.visible{
+    animation: slideLeft .6s ease-in forwards;
+}
+
 section.contacts>.content>.info>p.title{
+    opacity: 0;
     margin-top: 0;
     padding-bottom: 20px;
     color: #0F244F;
     font-size: 32px;
     font-weight: 700;
+}
+
+section.contacts>.content>.info>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 section.contacts>.content>.info>p>a{
@@ -705,6 +800,14 @@ section.contacts>.content>.info>p>a{
     font-size: 24px;
     font-weight: 500;
     outline: none;
+}
+
+section.contacts>.content>.maps{
+    opacity: 0;
+}
+
+section.contacts>.content>.maps.visible{
+    animation: slideRight .6s ease-in forwards;
 }
 
 footer{
@@ -721,9 +824,14 @@ footer>.content{
 }
 
 footer>.content>p{
+    opacity: 0;
     color: white;
     font-size: 20px;
     font-weight: 500;
+}
+
+footer>.content>p.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 footer>.content>.other{
@@ -738,6 +846,7 @@ footer>.content>.other>.nav{
 }
 
 footer>.content>.other>.nav>a{
+    opacity: 0;
     text-decoration: none;
     margin-top: 8px;
     font-size: 16px;
@@ -747,11 +856,20 @@ footer>.content>.other>.nav>a{
     cursor: pointer;
 }
 
+footer>.content>.other>.nav>a.visible{
+    animation: slideRight .6s ease-in forwards;
+}
+
 footer>.content>.other>.nav>p.title{
+    opacity: 0;
     font-size: 20px;
     font-weight: 700;
     color: white;
     padding-bottom: 8px;
+}
+
+footer>.content>.other>.nav>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 footer>.content>.other>.contacts{
@@ -761,18 +879,28 @@ footer>.content>.other>.contacts{
 }
 
 footer>.content>.other>.contacts>p{
+    opacity: 0;
     margin-top: 8px;
     font-size: 16px;
     font-weight: 300;
     color: white;
 }
 
+footer>.content>.other>.contacts>p.visible{
+    animation: slideRight .6s ease-in forwards;
+}
+
 footer>.content>.other>.contacts>p.title{
+    opacity: 0;
     margin-top: 0;
     font-size: 20px;
     font-weight: 700;
     color: white;
     padding-bottom: 8px;
+}
+
+footer>.content>.other>.contacts>p.title.visible{
+    animation: fadeIn .6s ease-in forwards;
 }
 
 footer>p{
