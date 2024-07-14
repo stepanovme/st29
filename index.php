@@ -34,7 +34,6 @@ if($result -> num_rows > 0){
     <section class="promo">
         <video autoplay loop muted playsinline id="promoVideo">
             <source src="../assets/videos/promo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
         <div class="overlay"></div>
         <header>

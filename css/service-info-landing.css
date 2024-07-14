@@ -1,0 +1,308 @@
+@import url('style.css');
+@import url('varriables.css');
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}   
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownVer {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+header{
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    background-color: #053380;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+header>.content {
+    padding: 25px 0;
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideDown .6s ease-out forwards;
+}
+
+header>.content>.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+header>.content>.nav {
+    display: flex;
+    align-items: center;
+}
+
+header>.content>.nav>a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+header>.content>.nav>a:hover {
+    background-color: #2270F1;
+    color: white;
+}
+
+header>.content>.buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header>.content>.buttons>a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    outline: none;
+}
+
+header>.content>.buttons>button {
+    padding: 5px 15px;
+    background-color: #2270F1;
+    border: 0;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+}
+
+section{
+    background-color: #F6F9FE;
+    display: flex;
+    justify-content: center;
+}
+
+section>.content{
+    width: 1280px;
+}
+
+section>.content>.tree{
+    display: flex;
+    gap: 5px;
+    padding: 20px 0;
+    font-size: 20px;
+    color: #43567C;
+    animation: slideRight .6s ease-out forwards;
+}
+
+section>.content>.tree>a{
+    text-decoration: none;
+    color: #0F244F;
+    font-weight: 400;
+}
+
+section>.content>.service-content{
+    display: grid;
+    grid-template-columns: 510px 725px;
+    gap: 45px;
+}
+
+section>.content>.service-content>img{
+    background-blend-mode: multiply;    
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 515px;
+    cursor:zoom-in;
+}
+
+section>.content>.service-content>.text>h1{
+    color: #0F244F;
+    font-weight: 700;
+}
+
+section>.content>.service-content>.text>p{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #0F244F;
+}
+
+section>.content>.our-works{
+    margin-top: 50px;
+}
+
+section>.content>.our-works>p.title{
+    font-size: 32px;
+    color: #0F244F;
+    font-weight: 700;
+}
+
+section>.content>.our-works>.works{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 290px);
+    gap: 40px;
+    padding-bottom: 20px;
+}
+
+section>.content>.our-works>.works>.work{
+    background-image: url('/assets/images/work.jpg');
+    background-blend-mode: multiply;    
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 290px;
+    cursor: pointer;
+}
+
+footer{
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    background-color: #053380;
+}
+
+footer>.content{
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer>.content>p{
+    opacity: 1;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    animation: fadeIn .6s ease-in forwards;
+}
+
+footer>.content>.other{
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+footer>.content>.other>.nav{
+    display: flex;
+    flex-direction: column;
+}
+
+footer>.content>.other>.nav>a{
+    opacity: 1;
+    text-decoration: none;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    animation: slideRight .6s ease-in forwards;
+}
+
+footer>.content>.other>.nav>p.title{
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    padding-bottom: 8px;
+    animation: fadeIn .6s ease-in forwards;
+}
+
+footer>.content>.other>.contacts{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+footer>.content>.other>.contacts>p{
+    opacity: 1;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    animation: slideRight .6s ease-in forwards;
+}
+
+footer>.content>.other>.contacts>p.title{
+    opacity: 1;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    padding-bottom: 8px;
+    animation: fadeIn .6s ease-in forwards;
+}
+
+footer>p{
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}
