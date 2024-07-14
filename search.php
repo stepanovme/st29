@@ -22,7 +22,7 @@ if($result -> num_rows > 0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/service-info-landing.css">
+    <link rel="stylesheet" href="css/search.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -52,33 +52,58 @@ if($result -> num_rows > 0){
     <section>
         <div class="content">
             <div class="tree">
-                <a href="index.php">Главная</a> > <a href="services.php">Все услуги</a> > <p>Фасадные работы</p>
+                <a href="index.php">Главная</a> > <p>Все работы</p>
             </div>
 
-            <div class="service-content">
-                <img src="/assets/images/work.jpg" alt="">
-                <div class="text">
-                    <h1>Фасадные работы</h1>
-                    <p class="descr">
-                    Фасадные работы: монтаж фасадов НВФ
-                    Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов. Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов.
-                    <br><br>
-                    Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов. Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов.
-                    <br><br>
-                    Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов.
-                    </p>
+            <section>
+                <div class="nav">
+                    <p class="title">Услуга</p>
+                    <form action="">
+                        <?php 
+                        $sql = "SELECT * FROM service ORDER BY sort_order";
+                        $result = $conn->query($sql);
+                        
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo ' 
+                                    <label for=""><input type="checkbox" name="" id="" value="">'.$row['name'].'</label>
+                                ';
+                            }
+                        }
+                        ?>
+                    </form>
+                    <p class="title">Сортировка</p>
+                    <form action="">
+                        <label for="all"><input type="checkbox" name="all" id="all" value="">Все</label>
+                        <label for="popular"><input type="checkbox" name="popular" id="popular" value="">Популярные работы</label>
+                        <label for="recent"><input type="checkbox" name="recent" id="recent" value="">Недавние работы</label>
+                    </form>
                 </div>
-            </div>
-
-            <div class="our-works">
-                <p class="title">Наши работы с этой услугой</p>
-                <div class="works">
-                    <div class="work"></div>
-                    <div class="work"></div>
-                    <div class="work"></div>
-                    <div class="work"></div>
+                <div class="page-content">
+                    <input type="text" name="search" id="search" placeholder="Поиск по работам">
+                    <div class="works">
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                        <div class="card">
+                            <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+            
             
         </div>
     </section>
