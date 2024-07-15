@@ -95,6 +95,7 @@ header>.content>.logo {
     font-size: 20px;
     font-weight: 600;
     color: white;
+    cursor: pointer;
 }
 
 header>.content>.nav {

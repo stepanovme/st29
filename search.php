@@ -33,14 +33,14 @@ if($result -> num_rows > 0){
     
     <header>
         <div class="content">
-            <div class="logo">
+            <div class="logo" onclick="window.location.href = 'index.php'">
                 <?php echo $companyName; ?>
             </div>
             <div class="nav">
-                <a id="callCompany">О КОМПАНИИ</a>
-                <a id="callServices">НАШИ УСЛУГИ</a>
-                <a id="callWorks">НАШИ РАБОТЫ</a>
-                <a id="callContacts">КОНТАКТЫ</a>
+                <a id="callCompany" href="index.php">О КОМПАНИИ</a>
+                <a id="callServices" href="index.php">НАШИ УСЛУГИ</a>
+                <a id="callWorks" href="index.php">НАШИ РАБОТЫ</a>
+                <a id="callContacts" href="index.php">КОНТАКТЫ</a>
             </div>
             <div class="buttons">
                 <a href="tel:<?php echo $phoneFormated; ?>"><?php echo $phone; ?></a>
@@ -66,7 +66,7 @@ if($result -> num_rows > 0){
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo ' 
-                                    <label for=""><input type="checkbox" name="" id="" value="">'.$row['name'].'</label>
+                                    <label for="'.$row['serviceId'].'"><input type="checkbox" name="'.$row['serviceId'].'" id="'.$row['serviceId'].'" value="">'.$row['name'].'</label>
                                 ';
                             }
                         }
@@ -82,22 +82,22 @@ if($result -> num_rows > 0){
                 <div class="page-content">
                     <input type="text" name="search" id="search" placeholder="Поиск по работам">
                     <div class="works">
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="window.location.href='work-info.php'">
                             <p class="title">Лайский док <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></p>
                         </div>
                     </div>

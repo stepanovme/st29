@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
                 let dateValue = $('#dateInput').val();
                 let statusValue = $('#statusInput').val();
 
-                $('#servicesList tr').each(function() {
+                $('#feedbackList tr').each(function() {
                     let name = $(this).find('td').eq(1).text().toLowerCase();
                     let email = $(this).find('td').eq(2).text().toLowerCase();
                     let phone = $(this).find('td').eq(3).text().replace(/\D/g, '');

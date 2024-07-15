@@ -95,6 +95,7 @@ header>.content>.logo {
     font-size: 20px;
     font-weight: 600;
     color: white;
+    cursor: pointer;
 }
 
 header>.content>.nav {
@@ -175,6 +176,10 @@ section>.content>section{
     gap: 35px;
 }
 
+section>.content>section>.nav{
+    animation: slideRight .6s ease-out forwards;
+}
+
 section>.content>section>.nav>p{
     font-size: 20px;
     color: #0F244F;
@@ -209,6 +214,7 @@ section>.content>section>.page-content>input{
     font-weight: 300;
     outline: none;
     transition: .3s all;
+    animation: fadeIn .6s ease-out forwards;
 }
 
 section>.content>section>.page-content>input:hover{
@@ -226,6 +232,7 @@ section>.content>section>.page-content>.works{
     grid-template-columns: repeat(3, 290px);
     gap: 40px;
     padding-bottom: 20px;
+    animation: fadeIn .6s ease-out forwards;
 }
 
 section>.content>section>.page-content>.works>.card{

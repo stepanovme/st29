@@ -14,7 +14,6 @@ if($result -> num_rows > 0){
         $phoneFormated = str_replace([' ', '(', ')', '-'], '', $phone);
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +59,7 @@ if($result -> num_rows > 0){
                 <p>Специалезируемся на фасадных<br> и кровельных работах</p>
                 <div class="buttons">
                     <button type="button" class="call-us" id="callMeBack">Связаться с нами!</button>
-                    <button type="button" class="view-works">Посмотреть работы&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+                    <button type="button" class="view-works" onclick="window.location.href = 'search.php'">Посмотреть работы&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
                 </div>
             </div>
         </div>
@@ -73,24 +72,28 @@ if($result -> num_rows > 0){
             </p>
 
             <?php 
-            $sql = "SELECT * FROM service ORDER BY sort_order";
-            $result = $conn->query($sql);
-            $numService = 0;
-            
-            if ($result->num_rows > 0) {
-                echo '<div class="cards">';
-                while ($row = $result->fetch_assoc()) {
-                    $numService++;
-                    echo ' 
-                        <div class="card">
-                            <p class="num">0'.$numService.'</p>
-                            <p class="title">'.$row['name'].'</p>
-                            <p class="descr">'.$row['description'].'</p>
-                        </div>
-                    ';
+                $sql = "SELECT * FROM service ORDER BY sort_order";
+                $result = $conn->query($sql);
+                $numService = 0;
+
+                if ($result->num_rows > 0) {
+                    echo '<div class="cards">';
+                    while ($row = $result->fetch_assoc()) {
+                        $numService++;
+                        $description = $row['description'];
+                        if (strlen($description) > 120) {
+                            $description = substr($description, 0, 280) . '...';
+                        }
+                        echo ' 
+                            <div class="card" onclick="window.location.href=\'service-info.php?serviceId=' . $row['serviceId'] . '\'">
+                                <p class="num">0'.$numService.'</p>
+                                <p class="title">'.$row['name'].'</p>
+                                <p class="descr">'.$description.'</p>
+                            </div>
+                        ';
+                    }
+                    echo '</div>';
                 }
-                echo '</div>';
-            }
             ?>
         </div>
     </section>
@@ -118,48 +121,49 @@ if($result -> num_rows > 0){
             </div>
 
             <div class="works">
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
-                <div class="work">
+                <div class="work" onclick="window.location.href='work-info.php'">
                     <p class="title">Лайский док</p>
                     <p class="descr">Комплекс работ по монтажу навесного вентилируемого фасада с теплоизоляционным слоем, включая монтаж оконных и дверных откосов, водоотливов, примыканий и углов</p>
                     <p class="details">Подробнее <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></p>
                 </div>
+                
             </div>
-            <button type="button" class="viewBtn">Посмотреть работы <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+            <button type="button" class="viewBtn" onclick="window.location.href = 'search.php'">Посмотреть работы <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
         </div>
     </section>
 
@@ -276,6 +280,6 @@ if($result -> num_rows > 0){
 
     <div id="notification" style="display: none;">Сообщение отправлено!</div>
 
-    <script src="js/index.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>
