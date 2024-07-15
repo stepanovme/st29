@@ -136,7 +136,7 @@ if ($result->num_rows > 0) {
         $('.slider').slick({
             autoplay: true,
             autoplaySpeed: 2000,
-            dots: true,
+            dots: false,
             appendDots: $('.slider'),
             arrows: true,
             prevArrow: '<button type="button" class="slick-prev">Previous</button>',
@@ -147,18 +147,19 @@ if ($result->num_rows > 0) {
             var slideIndex = $(this).closest('.slider').slick('slickCurrentSlide');
             var slides = $('.slider').slick('getSlick').$slides;
 
-            // Clear existing slides if any
             if ($('.slick-fullscreen').hasClass('slick-initialized')) {
                 $('.slick-fullscreen').slick('unslick');
             }
 
-            // Add slides to fullscreen slider
+            $('.slick-fullscreen').empty();
+
+            // Add slides to the fullscreen slider
             slides.each(function() {
                 var src = $(this).find('img').attr('src');
                 $('.slick-fullscreen').append('<div><img src="' + src + '" alt=""></div>');
             });
 
-            // Initialize fullscreen slider
+            // Initialize the fullscreen slider
             $('.slick-fullscreen').slick({
                 dots: true,
                 arrows: true,
@@ -167,20 +168,24 @@ if ($result->num_rows > 0) {
                 initialSlide: slideIndex
             });
 
-            // Show fullscreen slider
+            // Show the fullscreen slider
             $('.fullscreen-slider').show();
         });
 
+        // Event handler for closing the fullscreen slider
         $('.close-fullscreen').on('click', function() {
             $('.fullscreen-slider').hide();
         });
 
+        // Event handler for clicking outside the image to close the fullscreen slider
         $('.fullscreen-slider').on('click', function(event) {
-            if (event.target.className == 'fullscreen-slider') {
+            if ($(event.target).is('.fullscreen-slider')) {
                 $('.fullscreen-slider').hide();
             }
         });
+
     });
+
     </script>
 </body>
 </html>

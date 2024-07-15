@@ -1,6 +1,8 @@
 <?php
 require_once('../db.php');
 
+session_start();
+
 $sql = "SELECT * FROM setting";
 $result = $conn -> query($sql);
 
