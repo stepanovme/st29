@@ -1,7 +1,14 @@
 <?php
-require_once('../db.php');
-
 session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: auth.php');
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
+require_once('../db.php');
 
 $sql = "SELECT * FROM setting";
 $result = $conn -> query($sql);
@@ -53,6 +60,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="tile" onClick="window.location.href = 'feedback.php'">
                 <a>Обратная связь</a>
+            </div>
+            <div class="tile" onClick="window.location.href = 'works.php'">
+                <a>Работы</a>
             </div>
         </div>
         <div class="page-content">

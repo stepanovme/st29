@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: auth.php');
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
 require_once('../db.php');
 
 ini_set('display_errors', 1);

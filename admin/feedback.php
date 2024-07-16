@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: auth.php');
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
 require_once('../db.php');
 
 ini_set('display_errors', 1);
@@ -44,6 +53,9 @@ if ($result->num_rows > 0) {
             </div>
             <div class="tile active">
                 <a>Обратная связь</a>
+            </div>
+            <div class="tile" onClick="window.location.href = 'works.php'">
+                <a>Работы</a>
             </div>
         </div>
         <div class="page-content">

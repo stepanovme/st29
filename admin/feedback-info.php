@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: auth.php');
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
 require_once('../db.php');
 
 ini_set('display_errors', 1);
@@ -60,11 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="tile" onClick="window.location.href = 'index.php'">
                 <a>Настройки</a>
             </div>
-            <div class="tile active" onClick="window.location.href = 'services.php'">
+            <div class="tile" onClick="window.location.href = 'services.php'">
                 <a>Услуги</a>
             </div>
-            <div class="tile" onClick="window.location.href = 'feedback.php'">
+            <div class="tile active" onClick="window.location.href = 'feedback.php'">
                 <a>Обратная связь</a>
+            </div>
+            <div class="tile" onClick="window.location.href = 'works.php'">
+                <a>Работы</a>
             </div>
         </div>
 
